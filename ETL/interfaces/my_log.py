@@ -6,7 +6,7 @@ class LoggingEtl:
     Centralizing logging into a class.
     """
 
-    def __init__(self):
+    def start_logging(self):
         """
         Start logging for class.
         """
@@ -16,7 +16,10 @@ class LoggingEtl:
             level=logging.DEBUG,
             format="[DATA][%(levelname)s]%(filename)s:%(lineno)d %(asctime)s - %(message)s",
         )
-        self.log = logging.LoggerAdapter(
+        return logging.LoggerAdapter(
             logging.getLogger(self.__class__.__name__),
             {"class": self.__class__.__name__},
         )
+
+
+#     logging.shutdown()

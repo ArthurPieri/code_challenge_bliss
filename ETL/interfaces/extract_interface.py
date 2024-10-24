@@ -1,27 +1,24 @@
 from abc import ABC, abstractmethod
 
 from .my_log import LoggingEtl
-from dbi import Interface_DB
 
 
-class ExtractInterface(ABC, LoggingEtl, Interface_DB):
+class ExtractInterface(ABC, LoggingEtl):
     """'
     This class is used to extract data from the source.
     It receives a schema name, a table name, and a list of delta_date_columns.
     Makes all the treatments necessary to extract the data and return a Dict.
     """
 
+    @abstractmethod
     def __init__(self, **kwargs) -> None:
-        LoggingEtl().__init__()
-
-        self._get_connection(**kwargs)
+        """
+        Init your class
+        """
 
     @abstractmethod
     def extract(
         self,
-        delta_date_columns: list,
-        batch_size: int = 10000,
-        last_date=None,
         **kwargs,
     ) -> list[dict]:
         """
@@ -34,10 +31,4 @@ class ExtractInterface(ABC, LoggingEtl, Interface_DB):
         Get connection from .env file or other source
         Parameters:
         - **Kwargs parameters are used to get connection
-        """
-
-    @abstractmethod
-    def __del__(self) -> None:
-        """
-        Close connection to source and shutdown logging
         """

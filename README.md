@@ -1,5 +1,11 @@
 # Code Challenge: Data Engineer
 
+## Como executar o projeto
+
+1. Instalar UV ou Poetry:
+    - aa
+2. 
+
 ## Contexto
 
 Somos uma empresa que está transformando dados em insights para melhorar a experiência do cliente e otimizar operações. Estamos construindo uma plataforma robusta que integra dados de diversas fontes e permite a análise eficiente e confiável desses dados. Sua tarefa será implementar um pipeline de ETL que processe dados e os torne acessíveis para consulta, análise e visualização.
