@@ -2,9 +2,11 @@
 
 ## Como executar o projeto
 
-1. Instalar UV ou Poetry:
-    - aa
-2. 
+1. Instalar UV (ou Poetry):
+    - https://docs.astral.sh/uv/getting-started/installation/
+2. Executar os comandos:
+    - uv install
+    - uv run o arquivo em questão
 
 ## Contexto
 

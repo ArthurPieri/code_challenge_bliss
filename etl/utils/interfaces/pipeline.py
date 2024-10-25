@@ -15,7 +15,7 @@ class PipelineInterface(ABC, LoggingEtl):
         self.log = LoggingEtl().start_logging()
 
     @abstractmethod
-    def run(self, execution_list: list[dict]):
+    def run(self, execution_list: list[dict]) -> dict:
         """
         Run your pipeline
         """

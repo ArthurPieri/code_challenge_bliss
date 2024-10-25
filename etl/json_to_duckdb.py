@@ -11,6 +11,7 @@ Read a json file and save it as parquet
 # %%
 import duckdb
 from utils.interfaces.pipeline import PipelineInterface
+import time
 
 
 # %%
@@ -20,15 +21,100 @@ class JsonToDuck(PipelineInterface):
         Init pipeline
         """
         super().__init__()
+        self.start_time = time.time()
 
         # Creating a few properties to check later
         self.extracted = {}
         self.loaded = {}
         self.transformed = {}
+        self.pipeline_run_time = 0.0
         # will be used to remove every temp table when pipeline is finished
         self.temp_tables = []
 
-    def run(self, execution_list: list[dict]):
+    def extract(self, **kwargs) -> str:
+        """
+        Extract and make small transformations to data from json and save it to a Duckdb table
+
+        ## Kwargs:
+        - table_name:str =  is the name of the table to be created
+        - json_file:str =  is the source file
+        - select_query:str =  is part of the query used on the create table statement, it should not contain the FROM
+            - Example: 'SELECT *'
+
+        ## Exceptions
+        - AssertionError - if one of the kwargs were invalid
+        """
+        assert "json_file" in kwargs
+        assert type(kwargs["json_file"] is str)
+        assert "select_query" in kwargs
+        assert type(kwargs["select_query"] is str)
+        assert "table_name" in kwargs
+        assert type(kwargs["table_name"]) is str
+
+        start_time = time.time()
+        # Read from json and create temporary table
+        temp_table_name = self._create_table(
+            from_clause=kwargs["json_file"],
+            table_name=kwargs["table_name"],
+            select_query=kwargs["select_query"],
+            is_temp=True,
+            operation="extract",
+        )
+        end_time = time.time()
+        self.extracted[temp_table_name]["elapsed_time"] = format(
+            end_time - start_time, ".3f"
+        )
+
+        return temp_table_name
+
+    def load(self, **kwargs):
+        """
+        Save your duckdb table to a parquet file
+
+        ## Kwargs:
+        - append: bool = if True then the data will be appended to file
+            - if False, will eliminate duplicates
+        - table_name: str =  name of the table to be created
+        - temp_table_name: str = name of the temporary table created on self.extract()
+        - filemame: str =  is the name of the parquet file
+            - it can be the same as the table_name or can be a partition
+
+        ## Exceptions
+        - AssertionError - if one of the kwargs are invalid
+        """
+        assert "append" in kwargs
+        assert "filename" in kwargs
+        assert "table_name" in kwargs
+        assert "temp_table_name" in kwargs
+
+        start = time.time()
+        # Add loaddate to table
+        self._add_loaddate(table_name=kwargs["temp_table_name"])
+
+        try:
+            duckdb.sql(f"SELECT * FROM {kwargs["filename"]} limit 1").fetchone()
+            self.log.info("File: %s found, merging data into it", kwargs["filename"])
+            self._merge_tables(
+                append=kwargs["append"],
+                filename=kwargs["filename"],
+                table_name=kwargs["table_name"],
+                temp_table_name=kwargs["temp_table_name"],
+            )
+        except Exception as exc:
+            self.log.debug(exc)
+            self.log.info("File: %s not found, creating it", kwargs["filename"])
+            self._create_parquet_file(
+                table_name=kwargs["table_name"], filename=kwargs["filename"]
+            )
+        finally:
+            end = time.time()
+            table = kwargs["table_name"]
+            if not self.loaded.get(table):
+                self.loaded[table] = {"elapsed_time": 0.0}
+
+            self.loaded[table]["elapsed_time"] = format(end - start, ".3f")
+
+    def run(self, execution_list: list[dict]) -> dict:
         """
         Run the pipeline for multiple files
 
@@ -43,106 +129,55 @@ class JsonToDuck(PipelineInterface):
 
 
         ## Exceptions
-        - AssertionError - if one of the kwargs were invalid
+        croll docs down
 
         """
         assert type(execution_list) is list
 
+        start_time = time.time()
+
         for d in execution_list:
             assert type(d) is dict
-            assert "table_name" in d
-            assert "json_file" in d
-            assert "select_query" in d
             assert "append" in d
             assert "filename" in d
+            assert "json_file" in d
+            assert "select_query" in d
+            assert "table_name" in d
 
             self.log.info("===== STARTING RUN FOR %s =====", d["table_name"].upper())
-            table_name = self.extract(
+            # Extract the data from file
+            temp_table_name = self.extract(
                 table_name=d["table_name"],
                 json_file=d["json_file"],
                 select_query=d["select_query"],
             )
-            self.load(table_name=table_name, append=d["append"], filename=d["filename"])
-            self.log.info(
-                "Rows Extracted: %s, Rows Transformed: %s, Rows Loaded: %s",
-                self.extracted,
-                self.transformed,
-                self.loaded,
+            # Apply transformations to data
+
+            # Load data to File
+            self.load(
+                table_name=d["table_name"],
+                temp_table_name=temp_table_name,
+                append=d["append"],
+                filename=d["filename"],
             )
-            self.log.info("Finished runing pipeline for table: %s", d["table_name"])
+
+            self.log.info(
+                "Extracted: %s, Transformed: %s, Total_Loaded: %s",
+                self.extracted.get(temp_table_name, {}).get("rows"),
+                self.transformed.get(temp_table_name, {}).get("rows"),
+                self.loaded.get(d["table_name"], {}).get("rows"),
+            )
             self.log.info("===== RUN ENDED FOR %s =====", d["table_name"].upper())
 
-    def extract(self, **kwargs):
-        """
-        Extract and make small transformations to data from json and save it to a Duckdb table
+        end_time = time.time()
+        self.pipeline_run_time = format(end_time - start_time, ".3f")
 
-        ## Kwargs:
-        - table_name:str =  is the name of the table to be created
-        - json_file:str =  is the source file
-        - select_query:str =  is part of the query used on the create table statement, it should not contain the FROM
-            - Example: 'SELECT *'
-
-        ## Exceptions
-        - AssertionError - if one of the kwargs were invalid
-        """
-        assert "table_name" in kwargs
-        assert type(kwargs["table_name"]) is str
-
-        assert "json_file" in kwargs
-        assert type(kwargs["json_file"] is str)
-
-        assert "select_query" in kwargs
-        assert type(kwargs["select_query"] is str)
-
-        # Read from json and create temporary table
-        return self._create_table(
-            from_clause=kwargs["json_file"],
-            table_name=kwargs["table_name"],
-            select_query=kwargs["select_query"],
-            is_temp=True,
-            operation="extract",
-        )
+        return self._get_statistics()
 
     def transform(
         self, columns_to_drop: list = ..., columns_to_rename: dict = ..., **kwargs
     ):
         """ """
-
-    def load(self, **kwargs):
-        """
-        Save your duckdb table to a parquet file
-
-        ## Kwargs:
-        - append: bool = if True then the data will be appended to file
-            - if False, will eliminate duplicates
-        - table_name: str =  name of the table to be created
-        - filemame: str =  is the name of the parquet file
-            - it can be the same as the table_name or can be a partition
-
-        ## Exceptions
-        - AssertionError - if one of the kwargs are invalid
-        """
-        assert "table_name" in kwargs
-        assert "filename" in kwargs
-        assert "append" in kwargs
-
-        # Add loaddate to table
-        self._add_loaddate(table_name=kwargs["table_name"])
-
-        try:
-            duckdb.sql(f"SELECT * FROM {kwargs["filename"]} limit 1").fetchone()
-            self.log.info("File: %s found, merging data into it", kwargs["filename"])
-            self._merge_tables(
-                append=kwargs["append"],
-                filename=kwargs["filename"],
-                table_name=kwargs["table_name"],
-            )
-        except Exception as exc:
-            self.log.debug(exc)
-            self.log.info("File: %s not found, creating it", kwargs["filename"])
-            self._create_parquet_file(
-                table_name=kwargs["table_name"], filename=kwargs["filename"]
-            )
 
     def _add_loaddate(self, table_name: str):
         """
@@ -219,26 +254,41 @@ class JsonToDuck(PipelineInterface):
         size = duckdb.sql(f"SELECT count(*) FROM {table_name}").fetchone()
 
         if operation == "extract":
-            self.extracted[table_name] = size[0]  # type: ignore
+            self.extracted[table_name] = {"rows": size[0]}  # type: ignore
         elif operation == "load":
-            self.loaded[table_name] = size[0]  # type: ignore
+            self.loaded[table_name] = {"rows": size[0]}  # type: ignore
         elif operation == "transform":
-            self.transformed[table_name] = size[0]  # type: ignore
+            self.transformed[table_name] = {"rows": size[0]}  # type: ignore
         else:
             raise AttributeError("Operation not recognized")
 
         return size
 
-    def _merge_tables(self, filename: str, table_name: str, append: bool):
+    def _get_statistics(self) -> dict:
+        """
+        Get statistics from class
+        """
+        return {
+            "extracted": self.extracted,
+            "loaded": self.loaded,
+            "transformed": self.transformed,
+            "pipeline_time": self.pipeline_run_time
+        }
+
+    def _merge_tables(
+        self, filename: str, table_name: str, temp_table_name: str, append: bool
+    ):
         """
         Read the parquet file, and merge the temp table to import
 
         ## Args:
         - filename
         - table_name
+        - temp_table_name
         """
         # Read parquet file and save to table_old
         old_table = f"{table_name}_old"
+        start = time.time()
         self._create_table(
             from_clause=filename,
             table_name=old_table,
@@ -247,35 +297,42 @@ class JsonToDuck(PipelineInterface):
             operation="extract",
         )
         self.temp_tables.append(old_table)
+        end = time.time()
 
-        # Union
-        union_clause = "UNION BY NAME"
+        if not self.extracted.get(old_table):
+            self.extracted[old_table] = {"elapsed_time": 0.0}
+        self.extracted[old_table]["elapsed_time"] = format((end - start), ".3f")
+
         if append:
             union_clause = "UNION ALL BY NAME"
+        else:
+            union_clause = "UNION BY NAME"
 
-        merged_table = f"{table_name}_merged"
         # Merge tables
         duckdb.sql(f"""
-        CREATE TABLE {merged_table} AS
+        CREATE TABLE {table_name} AS
         SELECT * FROM {old_table}
         {union_clause}
-        SELECT * FROM {table_name}
+        SELECT * FROM {temp_table_name}
         """)
 
-        self._get_len(table_name=merged_table, operation="load")
+        self._get_len(table_name=table_name, operation="load")
         self.log.info(
-            "Tables: %s e %s merged successfully. Total rows: %s",
+            "Tables: %s e %s merged into: %s successfully. Total rows: %s",
             old_table,
+            temp_table_name,
             table_name,
-            self.loaded[merged_table],
+            self.loaded[table_name]["rows"],
         )
 
-        assert (self.extracted[table_name] + self.extracted[old_table]) == self.loaded[merged_table] 
+        assert (
+            self.extracted[temp_table_name]["rows"] + self.extracted[old_table]["rows"]
+        ) == self.loaded[table_name]["rows"]
 
-        self._create_parquet_file(table_name=merged_table, filename=filename)
+        self._create_parquet_file(table_name=table_name, filename=filename)
 
         # Drop tables
-        for table in [old_table, table_name, merged_table]:
+        for table in [old_table, temp_table_name, table_name]:
             duckdb.sql(f"DROP TABLE {table}")
             if table in self.temp_tables:
                 self.temp_tables.remove(table)
@@ -283,6 +340,11 @@ class JsonToDuck(PipelineInterface):
     def __del__(self):
         for table in self.temp_tables:
             duckdb.sql(f"DROP TABLE {table}")
+        end_time = time.time()
+        self.log.info(
+            "Class ran for: %s second(s)",
+            str(format(end_time - self.start_time, ".3f")),
+        )
         self.log.info("===== PIPELINE COMPLETED =====\n")
 
 
