@@ -5,8 +5,14 @@
 1. Instalar UV (ou Poetry):
     - https://docs.astral.sh/uv/getting-started/installation/
 2. Executar os comandos:
-    - uv install
-    - uv run o arquivo em questão
+    ```bash
+    uv install
+    uv run python /path/to/file
+    ``` 
+3. Para executar os tests:
+    ```bash
+    uv run pytest
+    ```
 
 ## Contexto
 
@@ -41,6 +47,11 @@ Sua tarefa é construir um pipeline de ETL (Extract, Transform, Load) que proces
 - Garantir que os dados sejam tratados de maneira segura, sem perda de informações.
 - A solução deve ser escalável, considerando um aumento de volume de dados.
 
+### Respostas
+
+A solução desenvolvida utiliza o DuckDB como intermediário e arquivos .parquet como saída para os dados, a escolha por arquivos parquet vem da facilidade de leitura desses arquivos por diferentes ferramentas, enquanto ainda mantém uma estrutura tabular dos dados.
+Ao utilizar o DuckDB também permitimos a criação de limites de memória disponivel permitindo o sistema rodar em locais com pouca memória.
+
 ### Diferencial
 
 - Emule uma solução de streaming baseada nos arquivos fornecidos.
@@ -61,6 +72,36 @@ Descreva como você implementaria uma solução de metadados que garante:
 ### Diferencial
 
 - Implemente essa solução no seu pipeline ETL.
+
+### Respostas
+
+**Como controlar quem pode acessar o que, e como controlar as permissões de acesso?**
+1. Primeiramente classificar os dados de acordo com sua "sensibilidade", inicialmente podemos adotar um padrão simples e a medida que os dados evoluem podemos também evoluir os grupos:
+    - Geral: os dados que podem ser acessados por todos da empresa
+    - Anônimo: os dados que podem ser acessados por todos da empresa somente após a anonimização de '_PII_'
+    - Restrito: Dados que só podem ser acessados com autorização explícita
+2. Após a criação dos grupos precisamos classificar os dados de acordo com cada um desses grupos, essa classificação pode ser feita a nível de Tabela ou mesmo a nível de Coluna, por exemplo:
+    - Classificação a nível de Tabela:
+        - A Tabela 'customers' é classificada como 'Restrito', já a tabela 'transactions' é classificada como 'Anônimo' e por fim a tabela 'products' é classificada como 'Geral'
+    - Classificação a nível de Coluna:
+        - A tabela 'customers' possui as seguintes colunas: 'cpf', 'nome', 'email', 'telefone', 'idade', 'sexo', 'id'. Dessa forma poderíamos classificar como:
+            - Restrito: 'nome', 'email', 'telefone'
+            - Anônimo: 'id', 'idade', 'sexo', 'cpf'
+        - Já a tabela doenças pré-existentes que contem: 'id_cliente', 'nome_doenca', 'cid-11' poderiam ser classificadas como:
+            - Geral: 'cid-11', 'nome_doenca'
+            - Anônimo: id_cliente
+        - Dessa forma permitimos que o time possa extrair estatísticas e fazer algumas correlações simples entre as doenças mais comuns por faixa etária (por exemplo), ao mesmo tempo protegemos a privacidade dos clientes ao não disponibilizar dados como nome, telefone e email
+    - Cada uma das escolhas tem suas vantagens e desvantagens, visto que a classificação a nível de tabela exigiria a criação de tabelas específicas para cada necessidade de negócio porém garante total separação entre as informações.
+    - Já a classificação a nível de coluna pode ser mais complexo, e nem todos os sistemas aceitam esse tipo de gestão de acesso.
+3. O controle de acesso as informações podem ser feitos:
+    - No Banco de Dados, bancos de dados modernos, como o postgres, permitem a configuração de acesso em diferentes granularidades
+    - No DataWarehouse, sistemas como Snowflake, BigQuery e outros também permitem o controle de acesso granular as informações armazenadas nos mesmos.
+4. Para a anonimização dos dados, existem várias alternativas, que podem ser utilizadas em conjunto, como:
+    - Utilização de ferramentas que permitam a anonimização, como por exemplo: https://github.com/nucleuscloud/neosync
+    - Separação de informações Protegidas em tabelas diferentes ou criação de views com filtro dessas informações
+    - Redução da quantidade de dados privados que são solicitados aos clientes
+    - Aplicação de "Hash" em colunas com dados sensíveis
+    - Criptografia para proteção dos dados
 
 ## Regras de Negócio
 

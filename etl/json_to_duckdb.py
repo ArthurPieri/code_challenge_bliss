@@ -6,6 +6,7 @@ Read a json file and save it as parquet
 - TODO [ ] Break the file down into chunks
 - TODO [ ] Check if file exists before trying to read it
 - TODO [ ] Make run() accept a list of dicts to run multiple files at once
+- TODO [ ] Add validation methods to the data being extracted (e.g GreatExpectations)
 """
 
 # %%
@@ -66,6 +67,18 @@ class JsonToDuck(PipelineInterface):
         )
 
         return temp_table_name
+
+    def extract_encrypted(self, **kwargs):
+        """
+
+        """
+        ...
+
+    def load_encrypted(self, **kwargs):
+        """
+
+        """
+        ...
 
     def load(self, **kwargs):
         """
@@ -246,6 +259,16 @@ class JsonToDuck(PipelineInterface):
 
         duckdb.table(table_name).to_parquet(filename)
         self.log.info("Table: %s saved on file: %s", table_name, filename)
+
+    def _decrypt_file(self):
+        """
+
+        """
+
+    def encrypt_file(self):
+        """
+
+        """
 
     def _get_len(self, table_name: str, operation: str):
         """
