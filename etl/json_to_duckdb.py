@@ -131,7 +131,7 @@ class JsonToDuck(PipelineInterface):
 
         try:
             duckdb.sql(f"SELECT * FROM {kwargs["filename"]} limit 1").fetchone()
-            self.log.info("File: %s foumd, merging data into it", kwargs["filename"])
+            self.log.info("File: %s found, merging data into it", kwargs["filename"])
             self._merge_tables(
                 append=kwargs["append"],
                 filename=kwargs["filename"],
@@ -269,6 +269,8 @@ class JsonToDuck(PipelineInterface):
             table_name,
             self.loaded[merged_table],
         )
+
+        assert (self.extracted[table_name] + self.extracted[old_table]) == self.loaded[merged_table] 
 
         self._create_parquet_file(table_name=merged_table, filename=filename)
 
