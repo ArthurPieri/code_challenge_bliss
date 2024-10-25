@@ -14,7 +14,7 @@ class LoggingEtl:
             filename=f"{self.__class__.__name__}.log",
             encoding="utf-8",
             level=logging.DEBUG,
-            format="[DATA][%(levelname)s]%(filename)s:%(lineno)d %(asctime)s - %(message)s",
+            format="[%(levelname)s]%(filename)s:%(lineno)d %(asctime)s - %(message)s",
         )
         return logging.LoggerAdapter(
             logging.getLogger(self.__class__.__name__),

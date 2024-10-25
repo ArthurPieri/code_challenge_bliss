@@ -1,0 +1,261 @@
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:55:44,442 - Table: payments_temp created with (100,) line(s)
+[DATA][DEBUG]json_to_duckdb.py:133 2024-10-24 20:55:44,449 - IO Error: No files found that match the pattern "payments.parquet"
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 20:55:44,449 - File: payments.parquet not found, creating it
+[DATA][INFO]json_to_duckdb.py:205 2024-10-24 20:55:44,451 - Table: payments_temp saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:55:44,451 - Finished runing pipeline for Table: payments
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:55:44,452 - Table: transactions_temp created with (100,) line(s)
+[DATA][DEBUG]json_to_duckdb.py:133 2024-10-24 20:55:44,452 - IO Error: No files found that match the pattern "transactions.parquet"
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 20:55:44,452 - File: transactions.parquet not found, creating it
+[DATA][INFO]json_to_duckdb.py:205 2024-10-24 20:55:44,453 - Table: transactions_temp saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:55:44,453 - Finished runing pipeline for Table: transactions
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:55:58,443 - Table: payments_temp created with (100,) line(s)
+[DATA][INFO]json_to_duckdb.py:126 2024-10-24 20:55:58,453 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:55:58,454 - Table: payments_temp_old created with (100,) line(s)
+[DATA][INFO]json_to_duckdb.py:258 2024-10-24 20:55:58,455 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 200
+[DATA][INFO]json_to_duckdb.py:205 2024-10-24 20:55:58,456 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:55:58,457 - Finished runing pipeline for Table: payments
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:55:58,459 - Table: transactions_temp created with (100,) line(s)
+[DATA][INFO]json_to_duckdb.py:126 2024-10-24 20:55:58,461 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:55:58,462 - Table: transactions_temp_old created with (100,) line(s)
+[DATA][INFO]json_to_duckdb.py:258 2024-10-24 20:55:58,463 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 200
+[DATA][INFO]json_to_duckdb.py:205 2024-10-24 20:55:58,465 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:55:58,466 - Finished runing pipeline for Table: transactions
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:56:32,253 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:126 2024-10-24 20:56:32,259 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:56:32,259 - Table: payments_temp_old created with 200 line(s)
+[DATA][INFO]json_to_duckdb.py:258 2024-10-24 20:56:32,260 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 300
+[DATA][INFO]json_to_duckdb.py:205 2024-10-24 20:56:32,261 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:56:32,261 - Finished runing pipeline for Table: payments
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:56:32,262 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:126 2024-10-24 20:56:32,263 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:186 2024-10-24 20:56:32,264 - Table: transactions_temp_old created with 200 line(s)
+[DATA][INFO]json_to_duckdb.py:258 2024-10-24 20:56:32,264 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 300
+[DATA][INFO]json_to_duckdb.py:205 2024-10-24 20:56:32,265 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:56:32,265 - Finished runing pipeline for Table: transactions
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 20:59:30,880 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 20:59:30,889 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 20:59:30,889 - Table: payments_temp_old created with 300 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 20:59:30,890 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 400
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 20:59:30,891 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:59:30,891 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 300}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 400}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 20:59:30,891 - Finished runing pipeline for Table: payments
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 20:59:30,892 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 20:59:30,893 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 20:59:30,894 - Table: transactions_temp_old created with 300 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 20:59:30,894 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 400
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 20:59:30,895 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 20:59:30,895 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 300, 'transactions_temp': 100, 'transactions_temp_old': 300}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 400, 'transactions_temp_merged': 400}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 20:59:30,895 - Finished runing pipeline for Table: transactions
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:00:21,406 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:00:21,414 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:00:21,415 - Table: payments_temp_old created with 400 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:00:21,416 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 500
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:00:21,419 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:00:21,420 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 400}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 500}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:00:21,420 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:00:21,424 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:00:21,426 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:00:21,428 - Table: transactions_temp_old created with 400 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:00:21,429 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 500
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:00:21,430 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:00:21,430 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 400, 'transactions_temp': 100, 'transactions_temp_old': 400}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 500, 'transactions_temp_merged': 500}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:00:21,430 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:01:20,685 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:01:20,699 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:01:20,700 - Table: payments_temp_old created with 500 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:01:20,702 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 600
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:01:20,704 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][DEBUG]json_to_duckdb.py:139 2024-10-24 21:01:20,705 - 'str' object cannot be interpreted as an integer
+[DATA][INFO]json_to_duckdb.py:140 2024-10-24 21:01:20,705 - File: payments.parquet not found, creating it
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:01:20,707 - Table: payments_temp saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:01:20,707 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 500}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 600}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:01:20,707 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:01:20,710 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:01:20,713 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:01:20,714 - Table: transactions_temp_old created with 500 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:01:20,715 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 600
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:01:20,718 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][DEBUG]json_to_duckdb.py:139 2024-10-24 21:01:20,718 - 'str' object cannot be interpreted as an integer
+[DATA][INFO]json_to_duckdb.py:140 2024-10-24 21:01:20,718 - File: transactions.parquet not found, creating it
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:01:20,719 - Table: transactions_temp saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:01:20,719 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 500, 'transactions_temp': 100, 'transactions_temp_old': 500}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 600, 'transactions_temp_merged': 600}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:01:20,719 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:02:23,024 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:02:23,031 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:02:23,031 - Table: payments_temp_old created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:02:23,032 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 200
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:02:23,033 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][DEBUG]json_to_duckdb.py:139 2024-10-24 21:02:23,033 - 'str' object cannot be interpreted as an integer
+[DATA][INFO]json_to_duckdb.py:140 2024-10-24 21:02:23,034 - File: payments.parquet not found, creating it
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:02:23,034 - Table: payments_temp saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:02:23,034 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 100}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 200}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:02:23,034 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:02:23,035 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:02:23,036 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:02:23,036 - Table: transactions_temp_old created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:02:23,037 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 200
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:02:23,037 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][DEBUG]json_to_duckdb.py:139 2024-10-24 21:02:23,037 - 'str' object cannot be interpreted as an integer
+[DATA][INFO]json_to_duckdb.py:140 2024-10-24 21:02:23,037 - File: transactions.parquet not found, creating it
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:02:23,038 - Table: transactions_temp saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:02:23,038 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 100, 'transactions_temp': 100, 'transactions_temp_old': 100}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 200, 'transactions_temp_merged': 200}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:02:23,038 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:03:24,644 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:03:24,651 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:03:24,652 - Table: payments_temp_old created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:03:24,653 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 200
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:03:24,654 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][DEBUG]json_to_duckdb.py:139 2024-10-24 21:03:24,654 - list.remove(x): x not in list
+[DATA][INFO]json_to_duckdb.py:140 2024-10-24 21:03:24,654 - File: payments.parquet not found, creating it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:04:31,603 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:04:31,613 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:04:31,614 - Table: payments_temp_old created with 200 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:04:31,615 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 300
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:04:31,617 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:04:31,618 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 200}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 300}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:04:31,618 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:04:31,620 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:132 2024-10-24 21:04:31,622 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:192 2024-10-24 21:04:31,623 - Table: transactions_temp_old created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:264 2024-10-24 21:04:31,624 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 200
+[DATA][INFO]json_to_duckdb.py:211 2024-10-24 21:04:31,624 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:65 2024-10-24 21:04:31,625 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 200, 'transactions_temp': 100, 'transactions_temp_old': 100}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 300, 'transactions_temp_merged': 200}
+[DATA][INFO]json_to_duckdb.py:71 2024-10-24 21:04:31,625 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:50 2024-10-24 21:06:10,349 - ===== STARTING RUN =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:06:10,374 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:06:10,381 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:06:10,382 - Table: payments_temp_old created with 300 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:06:10,383 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 400
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:06:10,384 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:06:10,385 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 300}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 400}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:06:10,385 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:06:10,385 - ===== END RUN =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:06:10,386 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:06:10,387 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:06:10,387 - Table: transactions_temp_old created with 200 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:06:10,388 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 300
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:06:10,388 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:06:10,389 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 300, 'transactions_temp': 100, 'transactions_temp_old': 200}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 400, 'transactions_temp_merged': 300}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:06:10,389 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:06:10,389 - ===== END RUN =====
+[DATA][INFO]json_to_duckdb.py:284 2024-10-24 21:06:10,391 - ===== PIPELINE COMPLETED =====
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:09,669 - ===== STARTING RUN FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:09,699 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:09,705 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:09,705 - Table: payments_temp_old created with 400 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:09,707 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 500
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:09,708 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:09,708 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 400}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 500}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:09,708 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:09,709 - ===== RUN ENDED FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:09,709 - ===== STARTING RUN FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:09,710 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:09,710 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:09,711 - Table: transactions_temp_old created with 300 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:09,711 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 400
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:09,712 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:09,712 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 400, 'transactions_temp': 100, 'transactions_temp_old': 300}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 500, 'transactions_temp_merged': 400}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:09,712 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:09,712 - ===== RUN ENDED FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:284 2024-10-24 21:07:09,714 - ===== PIPELINE COMPLETED =====
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:30,816 - ===== STARTING RUN FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:30,841 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:30,848 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:30,848 - Table: payments_temp_old created with 500 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:30,849 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 600
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:30,850 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:30,851 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 500}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 600}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:30,851 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:30,851 - ===== RUN ENDED FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:30,851 - ===== STARTING RUN FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:30,852 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:30,853 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:30,853 - Table: transactions_temp_old created with 400 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:30,854 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 500
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:30,854 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:30,855 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 500, 'transactions_temp': 100, 'transactions_temp_old': 400}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 600, 'transactions_temp_merged': 500}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:30,855 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:30,855 - ===== RUN ENDED FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:284 2024-10-24 21:07:30,857 - 
+===== PIPELINE COMPLETED =====
+
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:50,741 - ===== STARTING RUN FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:50,766 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:50,774 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:50,774 - Table: payments_temp_old created with 600 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:50,775 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 700
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:50,776 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:50,777 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 600}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 700}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:50,777 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:50,777 - ===== RUN ENDED FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:50,777 - ===== STARTING RUN FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:50,778 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:50,779 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:50,779 - Table: transactions_temp_old created with 500 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:50,780 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 600
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:50,780 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:50,781 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 600, 'transactions_temp': 100, 'transactions_temp_old': 500}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 700, 'transactions_temp_merged': 600}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:50,781 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:50,781 - ===== RUN ENDED FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:284 2024-10-24 21:07:50,783 - ===== PIPELINE COMPLETED =====
+
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:52,409 - ===== STARTING RUN FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:52,414 - Table: payments_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:52,415 - File: payments.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:52,415 - Table: payments_temp_old created with 700 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:52,416 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 800
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:52,416 - Table: payments_temp_merged saved on file: payments.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:52,417 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 700}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 800}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:52,417 - Finished runing pipeline for table: payments
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:52,417 - ===== RUN ENDED FOR PAYMENTS =====
+[DATA][INFO]json_to_duckdb.py:59 2024-10-24 21:07:52,417 - ===== STARTING RUN FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:52,417 - Table: transactions_temp created with 100 line(s)
+[DATA][INFO]json_to_duckdb.py:134 2024-10-24 21:07:52,418 - File: transactions.parquet foumd, merging data into it
+[DATA][INFO]json_to_duckdb.py:194 2024-10-24 21:07:52,419 - Table: transactions_temp_old created with 600 line(s)
+[DATA][INFO]json_to_duckdb.py:266 2024-10-24 21:07:52,419 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 700
+[DATA][INFO]json_to_duckdb.py:213 2024-10-24 21:07:52,419 - Table: transactions_temp_merged saved on file: transactions.parquet
+[DATA][INFO]json_to_duckdb.py:66 2024-10-24 21:07:52,420 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 700, 'transactions_temp': 100, 'transactions_temp_old': 600}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 800, 'transactions_temp_merged': 700}
+[DATA][INFO]json_to_duckdb.py:72 2024-10-24 21:07:52,420 - Finished runing pipeline for table: transactions
+[DATA][INFO]json_to_duckdb.py:73 2024-10-24 21:07:52,420 - ===== RUN ENDED FOR TRANSACTIONS =====
+[DATA][INFO]json_to_duckdb.py:284 2024-10-24 21:07:52,422 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:59 2024-10-24 21:36:56,657 - ===== STARTING RUN FOR PAYMENTS =====
+[INFO]json_to_duckdb.py:194 2024-10-24 21:36:56,689 - [EXTRACT] Table: payments_temp created with 100 line(s)
+[INFO]json_to_duckdb.py:134 2024-10-24 21:36:56,698 - File: payments.parquet foumd, merging data into it
+[INFO]json_to_duckdb.py:194 2024-10-24 21:36:56,698 - [EXTRACT] Table: payments_temp_old created with 1300 line(s)
+[INFO]json_to_duckdb.py:267 2024-10-24 21:36:56,699 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 1400
+[INFO]json_to_duckdb.py:214 2024-10-24 21:36:56,701 - Table: payments_temp_merged saved on file: payments.parquet
+[INFO]json_to_duckdb.py:66 2024-10-24 21:36:56,702 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 1300}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 1400}
+[INFO]json_to_duckdb.py:72 2024-10-24 21:36:56,702 - Finished runing pipeline for table: payments
+[INFO]json_to_duckdb.py:73 2024-10-24 21:36:56,702 - ===== RUN ENDED FOR PAYMENTS =====
+[INFO]json_to_duckdb.py:59 2024-10-24 21:36:56,702 - ===== STARTING RUN FOR TRANSACTIONS =====
+[INFO]json_to_duckdb.py:194 2024-10-24 21:36:56,703 - [EXTRACT] Table: transactions_temp created with 100 line(s)
+[INFO]json_to_duckdb.py:134 2024-10-24 21:36:56,704 - File: transactions.parquet foumd, merging data into it
+[INFO]json_to_duckdb.py:194 2024-10-24 21:36:56,704 - [EXTRACT] Table: transactions_temp_old created with 1200 line(s)
+[INFO]json_to_duckdb.py:267 2024-10-24 21:36:56,705 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 1300
+[INFO]json_to_duckdb.py:214 2024-10-24 21:36:56,705 - Table: transactions_temp_merged saved on file: transactions.parquet
+[INFO]json_to_duckdb.py:66 2024-10-24 21:36:56,706 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 1300, 'transactions_temp': 100, 'transactions_temp_old': 1200}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 1400, 'transactions_temp_merged': 1300}
+[INFO]json_to_duckdb.py:72 2024-10-24 21:36:56,706 - Finished runing pipeline for table: transactions
+[INFO]json_to_duckdb.py:73 2024-10-24 21:36:56,706 - ===== RUN ENDED FOR TRANSACTIONS =====
+[INFO]json_to_duckdb.py:285 2024-10-24 21:36:56,708 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:59 2024-10-24 21:39:24,660 - ===== STARTING RUN FOR PAYMENTS =====
+[INFO]json_to_duckdb.py:194 2024-10-24 21:39:24,684 - Table: payments_temp created with 100 line(s)
+[INFO]json_to_duckdb.py:134 2024-10-24 21:39:24,689 - File: payments.parquet foumd, merging data into it
+[INFO]json_to_duckdb.py:194 2024-10-24 21:39:24,689 - Table: payments_temp_old created with 1400 line(s)
+[INFO]json_to_duckdb.py:266 2024-10-24 21:39:24,690 - Tables: payments_temp_old e payments_temp merged successfully. Total rows: 1500
+[INFO]json_to_duckdb.py:213 2024-10-24 21:39:24,691 - Table: payments_temp_merged saved on file: payments.parquet
+[INFO]json_to_duckdb.py:66 2024-10-24 21:39:24,692 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 1400}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 1500}
+[INFO]json_to_duckdb.py:72 2024-10-24 21:39:24,692 - Finished runing pipeline for table: payments
+[INFO]json_to_duckdb.py:73 2024-10-24 21:39:24,692 - ===== RUN ENDED FOR PAYMENTS =====
+[INFO]json_to_duckdb.py:59 2024-10-24 21:39:24,692 - ===== STARTING RUN FOR TRANSACTIONS =====
+[INFO]json_to_duckdb.py:194 2024-10-24 21:39:24,693 - Table: transactions_temp created with 100 line(s)
+[INFO]json_to_duckdb.py:134 2024-10-24 21:39:24,694 - File: transactions.parquet foumd, merging data into it
+[INFO]json_to_duckdb.py:194 2024-10-24 21:39:24,694 - Table: transactions_temp_old created with 1300 line(s)
+[INFO]json_to_duckdb.py:266 2024-10-24 21:39:24,695 - Tables: transactions_temp_old e transactions_temp merged successfully. Total rows: 1400
+[INFO]json_to_duckdb.py:213 2024-10-24 21:39:24,696 - Table: transactions_temp_merged saved on file: transactions.parquet
+[INFO]json_to_duckdb.py:66 2024-10-24 21:39:24,696 - Rows Extracted: {'payments_temp': 100, 'payments_temp_old': 1400, 'transactions_temp': 100, 'transactions_temp_old': 1300}, Rows Transformed: {}, Rows Loaded: {'payments_temp_merged': 1500, 'transactions_temp_merged': 1400}
+[INFO]json_to_duckdb.py:72 2024-10-24 21:39:24,696 - Finished runing pipeline for table: transactions
+[INFO]json_to_duckdb.py:73 2024-10-24 21:39:24,696 - ===== RUN ENDED FOR TRANSACTIONS =====
+[INFO]json_to_duckdb.py:284 2024-10-24 21:39:24,698 - ===== PIPELINE COMPLETED =====
+

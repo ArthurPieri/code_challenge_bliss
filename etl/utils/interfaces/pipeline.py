@@ -15,13 +15,13 @@ class PipelineInterface(ABC, LoggingEtl):
         self.log = LoggingEtl().start_logging()
 
     @abstractmethod
-    def run(self, **kwargs):
+    def run(self, execution_list: list[dict]):
         """
         Run your pipeline
         """
 
     @abstractmethod
-    def extract(self, **kwargs):
+    def extract(self, **kwargs) -> str:
         """
         Extract data from the source
 

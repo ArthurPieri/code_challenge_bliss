@@ -5,12 +5,15 @@ Read a json file and save it as parquet
 - TODO [ ] Set memory limit on duckdb configs
 - TODO [ ] Break the file down into chunks
 - TODO [ ] Check if file exists before trying to read it
+- TODO [ ] Make run() accept a list of dicts to run multiple files at once
 """
 
+# %%
 import duckdb
 from utils.interfaces.pipeline import PipelineInterface
 
 
+# %%
 class JsonToDuck(PipelineInterface):
     def __init__(self, **kwargs):
         """
@@ -19,13 +22,55 @@ class JsonToDuck(PipelineInterface):
         super().__init__()
 
         # Creating a few properties to check later
-        self.len_extracted = {}
-        self.len_loaded = {}
-        self.len_transformed = {}
+        self.extracted = {}
+        self.loaded = {}
+        self.transformed = {}
         # will be used to remove every temp table when pipeline is finished
         self.temp_tables = []
 
-    def run(self, **kwargs): ...
+    def run(self, execution_list: list[dict]):
+        """
+        Run the pipeline for multiple files
+
+        ## Kwargs:
+        - execution_list is a dict that contains the following args:
+            - append: bool = if True then the data will be appended to file
+            - filemame: str =  is the name of the parquet file
+            - json_file: str =  is the source file
+            - select_query: str =  is part of the query used on the create table statement, it should not contain the FROM
+                - Example: 'SELECT *'
+            - table_name: str =  name of the table to be created
+
+
+        ## Exceptions
+        - AssertionError - if one of the kwargs were invalid
+
+        """
+        assert type(execution_list) is list
+
+        for d in execution_list:
+            assert type(d) is dict
+            assert "table_name" in d
+            assert "json_file" in d
+            assert "select_query" in d
+            assert "append" in d
+            assert "filename" in d
+
+            self.log.info("===== STARTING RUN FOR %s =====", d["table_name"].upper())
+            table_name = self.extract(
+                table_name=d["table_name"],
+                json_file=d["json_file"],
+                select_query=d["select_query"],
+            )
+            self.load(table_name=table_name, append=d["append"], filename=d["filename"])
+            self.log.info(
+                "Rows Extracted: %s, Rows Transformed: %s, Rows Loaded: %s",
+                self.extracted,
+                self.transformed,
+                self.loaded,
+            )
+            self.log.info("Finished runing pipeline for table: %s", d["table_name"])
+            self.log.info("===== RUN ENDED FOR %s =====", d["table_name"].upper())
 
     def extract(self, **kwargs):
         """
@@ -50,7 +95,7 @@ class JsonToDuck(PipelineInterface):
         assert type(kwargs["select_query"] is str)
 
         # Read from json and create temporary table
-        self._create_table(
+        return self._create_table(
             from_clause=kwargs["json_file"],
             table_name=kwargs["table_name"],
             select_query=kwargs["select_query"],
@@ -141,16 +186,17 @@ class JsonToDuck(PipelineInterface):
 
         query = f"CREATE TABLE {table_name} AS "
         query += select_query
-        query += f" FROM {from_clause}"
+        query += f" FROM '{from_clause}'"
         duckdb.sql(query)
 
         size = self._get_len(table_name=table_name, operation=operation)
 
         self.log.info(
             "Table: %s created with %s line(s)",
-            "table_name",
-            str(size),
+            table_name,
+            str(size[0]),  # type: ignore
         )
+        return table_name
 
     def _create_parquet_file(self, table_name: str, filename: str):
         """
@@ -173,11 +219,11 @@ class JsonToDuck(PipelineInterface):
         size = duckdb.sql(f"SELECT count(*) FROM {table_name}").fetchone()
 
         if operation == "extract":
-            self.len_extracted[table_name] = size[0]  # type: ignore
+            self.extracted[table_name] = size[0]  # type: ignore
         elif operation == "load":
-            self.len_loaded[table_name] = size[0]  # type: ignore
+            self.loaded[table_name] = size[0]  # type: ignore
         elif operation == "transform":
-            self.len_transformed[table_name] = size[0]  # type: ignore
+            self.transformed[table_name] = size[0]  # type: ignore
         else:
             raise AttributeError("Operation not recognized")
 
@@ -221,7 +267,7 @@ class JsonToDuck(PipelineInterface):
             "Tables: %s e %s merged successfully. Total rows: %s",
             old_table,
             table_name,
-            self.len_loaded[merged_table],
+            self.loaded[merged_table],
         )
 
         self._create_parquet_file(table_name=merged_table, filename=filename)
@@ -229,7 +275,33 @@ class JsonToDuck(PipelineInterface):
         # Drop tables
         for table in [old_table, table_name, merged_table]:
             duckdb.sql(f"DROP TABLE {table}")
+            if table in self.temp_tables:
+                self.temp_tables.remove(table)
 
     def __del__(self):
         for table in self.temp_tables:
             duckdb.sql(f"DROP TABLE {table}")
+        self.log.info("===== PIPELINE COMPLETED =====\n")
+
+
+# %%
+if __name__ == "__main__":
+    jd = JsonToDuck()
+    jd.run(
+        [
+            {
+                "table_name": "payments",
+                "json_file": "../payments.json",
+                "select_query": "SELECT cast(payment_id as INTEGER) as payment_id, CAST(transaction_id as INTEGER) as transaction_id, amount_paid, date_paid",
+                "append": True,
+                "filename": "payments.parquet",
+            },
+            {
+                "table_name": "transactions",
+                "json_file": "../transactions.json",
+                "select_query": "SELECT cast(customer_id as VARCHAR) as customer_id, CAST(transaction_id as INTEGER) as transaction_id, amount, date",
+                "append": True,
+                "filename": "transactions.parquet",
+            },
+        ]
+    )
