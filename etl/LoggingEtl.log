@@ -1043,3 +1043,114 @@
 [INFO]json_to_duckdb.py:478 2024-10-25 19:22:26,417 - Class ran for: 0.067 second(s)
 [INFO]json_to_duckdb.py:482 2024-10-25 19:22:26,417 - ===== PIPELINE COMPLETED =====
 
+[INFO]json_to_duckdb.py:482 2024-10-27 21:50:23,898 - Class ran for: 0.007 second(s)
+[INFO]json_to_duckdb.py:486 2024-10-27 21:50:23,898 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:482 2024-10-27 21:50:49,224 - Class ran for: 0.044 second(s)
+[INFO]json_to_duckdb.py:486 2024-10-27 21:50:49,225 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:280 2024-10-27 21:51:06,748 - Table: payments_test_temp created with 100 line(s)
+[INFO]json_to_duckdb.py:482 2024-10-27 21:51:06,756 - Class ran for: 0.035 second(s)
+[INFO]json_to_duckdb.py:486 2024-10-27 21:51:06,756 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:280 2024-10-27 21:51:24,847 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:141 2024-10-27 21:51:24,857 - Parser Error: syntax error at or near "/"
+[INFO]json_to_duckdb.py:142 2024-10-27 21:51:24,857 - File: tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:482 2024-10-27 21:51:27,258 - Class ran for: 2.412 second(s)
+[INFO]json_to_duckdb.py:486 2024-10-27 21:51:27,258 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:280 2024-10-27 21:51:59,592 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:141 2024-10-27 21:51:59,593 - Parser Error: syntax error at or near ".."
+[INFO]json_to_duckdb.py:142 2024-10-27 21:51:59,593 - File: ../tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:482 2024-10-27 21:51:59,661 - Class ran for: 0.072 second(s)
+[INFO]json_to_duckdb.py:486 2024-10-27 21:51:59,661 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:280 2024-10-27 21:53:40,053 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:141 2024-10-27 21:53:40,060 - Parser Error: syntax error at or near "/"
+[INFO]json_to_duckdb.py:142 2024-10-27 21:53:40,060 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:482 2024-10-27 21:53:40,154 - Class ran for: 0.125 second(s)
+[INFO]json_to_duckdb.py:486 2024-10-27 21:53:40,154 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:280 2024-10-27 21:55:16,404 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:141 2024-10-27 21:55:16,408 - Parser Error: syntax error at or near "/"
+[INFO]json_to_duckdb.py:142 2024-10-27 21:55:16,408 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:483 2024-10-27 21:55:16,486 - Class ran for: 0.094 second(s)
+[INFO]json_to_duckdb.py:487 2024-10-27 21:55:16,486 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:280 2024-10-27 21:55:43,450 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:141 2024-10-27 21:55:43,452 - Parser Error: syntax error at or near "/"
+[INFO]json_to_duckdb.py:142 2024-10-27 21:55:43,452 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:483 2024-10-27 21:55:43,519 - Class ran for: 0.072 second(s)
+[INFO]json_to_duckdb.py:487 2024-10-27 21:55:43,520 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:283 2024-10-27 21:58:10,434 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:144 2024-10-27 21:58:10,435 - 
+[INFO]json_to_duckdb.py:145 2024-10-27 21:58:10,435 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:485 2024-10-27 21:58:10,496 - Class ran for: 0.064 second(s)
+[INFO]json_to_duckdb.py:489 2024-10-27 21:58:10,497 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:283 2024-10-27 21:58:57,303 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:144 2024-10-27 21:58:57,306 - 
+[INFO]json_to_duckdb.py:145 2024-10-27 21:58:57,306 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:485 2024-10-27 21:58:57,377 - Class ran for: 0.084 second(s)
+[INFO]json_to_duckdb.py:489 2024-10-27 21:58:57,377 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:283 2024-10-27 21:59:48,159 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:144 2024-10-27 21:59:48,159 - 
+[INFO]json_to_duckdb.py:145 2024-10-27 21:59:48,159 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:485 2024-10-27 21:59:48,213 - Class ran for: 0.056 second(s)
+[INFO]json_to_duckdb.py:489 2024-10-27 21:59:48,213 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:283 2024-10-27 22:01:49,647 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:144 2024-10-27 22:01:49,654 - 
+[INFO]json_to_duckdb.py:145 2024-10-27 22:01:49,654 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:492 2024-10-27 22:01:49,760 - Class ran for: 0.142 second(s)
+[INFO]json_to_duckdb.py:496 2024-10-27 22:01:49,760 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:283 2024-10-27 22:02:13,178 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:144 2024-10-27 22:02:13,179 - 
+[INFO]json_to_duckdb.py:145 2024-10-27 22:02:13,179 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:492 2024-10-27 22:02:13,224 - Class ran for: 0.048 second(s)
+[INFO]json_to_duckdb.py:496 2024-10-27 22:02:13,225 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:282 2024-10-27 22:03:35,262 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:143 2024-10-27 22:03:35,263 - 
+[INFO]json_to_duckdb.py:144 2024-10-27 22:03:35,263 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:490 2024-10-27 22:03:35,328 - Class ran for: 0.068 second(s)
+[INFO]json_to_duckdb.py:494 2024-10-27 22:03:35,329 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:282 2024-10-27 22:05:24,802 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:143 2024-10-27 22:05:24,803 - 
+[INFO]json_to_duckdb.py:144 2024-10-27 22:05:24,803 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:313 2024-10-27 22:05:24,892 - Table: payments_test_temp saved on file: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet
+[INFO]json_to_duckdb.py:490 2024-10-27 22:05:24,905 - Class ran for: 0.105 second(s)
+[INFO]json_to_duckdb.py:494 2024-10-27 22:05:24,905 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:282 2024-10-27 22:06:20,719 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:143 2024-10-27 22:06:20,719 - 
+[INFO]json_to_duckdb.py:144 2024-10-27 22:06:20,719 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:313 2024-10-27 22:06:20,776 - Table: payments_test saved on file: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet
+[INFO]json_to_duckdb.py:491 2024-10-27 22:06:20,785 - Class ran for: 0.069 second(s)
+[INFO]json_to_duckdb.py:495 2024-10-27 22:06:20,785 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:282 2024-10-27 22:08:42,016 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:143 2024-10-27 22:08:42,022 - 
+[INFO]json_to_duckdb.py:144 2024-10-27 22:08:42,022 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:313 2024-10-27 22:08:42,169 - Table: payments_test saved on file: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet
+[INFO]json_to_duckdb.py:499 2024-10-27 22:08:42,178 - Class ran for: 0.190 second(s)
+[INFO]json_to_duckdb.py:503 2024-10-27 22:08:42,178 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:282 2024-10-27 22:09:04,940 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:143 2024-10-27 22:09:04,941 - 
+[INFO]json_to_duckdb.py:144 2024-10-27 22:09:04,941 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:313 2024-10-27 22:09:05,038 - Table: payments_test saved on file: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet
+[INFO]json_to_duckdb.py:500 2024-10-27 22:09:05,046 - Class ran for: 0.109 second(s)
+[INFO]json_to_duckdb.py:504 2024-10-27 22:09:05,047 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:282 2024-10-27 22:09:27,810 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:143 2024-10-27 22:09:27,815 - 
+[INFO]json_to_duckdb.py:144 2024-10-27 22:09:27,815 - File: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:313 2024-10-27 22:09:27,963 - Table: payments_test saved on file: /Users/arthurpieri/code/code_challenge_bliss/tests/fixtures/payments.crypt.parquet
+[INFO]json_to_duckdb.py:501 2024-10-27 22:09:27,972 - Class ran for: 0.187 second(s)
+[INFO]json_to_duckdb.py:505 2024-10-27 22:09:27,972 - ===== PIPELINE COMPLETED =====
+

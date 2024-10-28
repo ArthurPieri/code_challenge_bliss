@@ -57,30 +57,30 @@ class JsonToDuck(PipelineInterface):
         - KeyError
         """
         assert "source_file" in kwargs
-        assert type(kwargs["source_file"] is str)
+        assert type(kwargs.get("source_file")) is str
         assert "select_query" in kwargs
-        assert type(kwargs["select_query"] is str)
+        assert type(kwargs.get("select_query")) is str
         assert "source_table_name" in kwargs
-        assert type(kwargs["source_table_name"]) is str
+        assert type(kwargs.get("source_table_name")) is str
         assert "source_is_encrypted" in kwargs
-        assert type(kwargs["source_is_encrypted"]) is str
+        assert type(kwargs.get("source_is_encrypted")) is bool
 
         start_time = time.time()
 
-        if kwargs["source_is_encrypted"]:
-            assert kwargs["source_password"]
-            temp_table_name = self._decrypt_file(
-                filename=kwargs["source_file"],
+        if kwargs.get("source_is_encrypted"):
+            assert kwargs.get("source_password")
+            temp_table_name, _ = self._decrypt_file(
+                filename=kwargs.get("source_file", None),
                 is_temp=True,
-                password=kwargs["source_password"],
-                select_query=kwargs["select_query"],
-                table_name=kwargs["source_table_name"],
+                password=kwargs.get("source_password", None),
+                select_query=kwargs.get("select_query", None),
+                table_name=f"{kwargs.get("source_table_name", None)}_crypt",
             )
         else:
             temp_table_name = self._create_table(
-                from_clause=kwargs["source_file"],
-                table_name=kwargs["source_table_name"],
-                select_query=kwargs["select_query"],
+                from_clause=kwargs.get("source_file"),
+                table_name=kwargs.get("source_table_name", None),
+                select_query=kwargs.get("select_query", None),
                 is_temp=True,
                 operation="extract",
             )
@@ -118,17 +118,19 @@ class JsonToDuck(PipelineInterface):
         assert type(kwargs.get("dest_table_name")) is str
         assert "temp_table_name" in kwargs
         assert type(kwargs.get("temp_table_name")) is str
-
-        if kwargs["dest_is_encrypted"]:
-            assert kwargs["dest_password"]
+        if kwargs.get("dest_is_encrypted", None):
+            assert kwargs.get("dest_password")
 
         start = time.time()
-        # Add loaddate to table
-        self._add_loaddate(table_name=kwargs["temp_table_name"])
+        self._add_loaddate(table_name=kwargs.get("temp_table_name", None))
 
         try:
-            duckdb.sql(f"SELECT * FROM {kwargs["dest_file"]} limit 1").fetchone()
-            self.log.info("File: %s found, merging data into it", kwargs["dest_file"])
+            if not kwargs.get("append"):
+                raise Exception
+            duckdb.sql(f"SELECT * FROM {kwargs.get("dest_file")} limit 1").fetchone()
+            self.log.info(
+                "File: %s found, merging data into it", kwargs.get("dest_file")
+            )
             self._merge_tables(
                 append=kwargs.get("append", None),
                 filename=kwargs.get("dest_file", None),
@@ -139,7 +141,7 @@ class JsonToDuck(PipelineInterface):
             )
         except Exception as exc:
             self.log.debug(exc)
-            self.log.info("File: %s not found, creating it", kwargs["dest_file"])
+            self.log.info("File: %s not found, creating it", kwargs.get("dest_file"))
             self._create_parquet_file(
                 table_name=kwargs.get("dest_table_name", None),
                 filename=kwargs.get("dest_file", None),
@@ -230,17 +232,20 @@ class JsonToDuck(PipelineInterface):
         Args:
         - table_name: the name of the table data will be loadded to
         """
-        query = f"""
-        ALTER TABLE {table_name}
-        ADD COLUMN loaddate TIMESTAMP;
-        """
-        duckdb.sql(query)
+        try:
+            query = f"""
+            ALTER TABLE {table_name}
+            ADD COLUMN loaddate TIMESTAMP;
+            """
+            duckdb.sql(query)
 
-        update = f"""
-        UPDATE {table_name}
-        SET loaddate = CURRENT_TIMESTAMP;
-        """
-        duckdb.sql(update)
+            update = f"""
+            UPDATE {table_name}
+            SET loaddate = CURRENT_TIMESTAMP;
+            """
+            duckdb.sql(update)
+        except Exception as exc:
+            self.log.info(exc)
 
     def _create_table(
         self,
@@ -270,13 +275,12 @@ class JsonToDuck(PipelineInterface):
         query = f"CREATE TABLE {table_name} AS "
         query += select_query
         if data:
-            query += f" FROM {data}"
-        else:
-            query += f" FROM '{from_clause}'"
+            data_table = duckdb.arrow(data)
+            from_clause = "data_table"
+
+        query += f" FROM '{from_clause}'"
         duckdb.sql(query)
-
         size = self._get_len(table_name=table_name, operation=operation)
-
         self.log.info(
             "Table: %s created with %s line(s)",
             table_name,
@@ -302,7 +306,9 @@ class JsonToDuck(PipelineInterface):
             raise SyntaxError("filename must be a .parquet file")
 
         if is_encrypted:
-            self._encrypt_file(filename=filename, password=password)
+            self._encrypt_file(
+                filename=filename, password=password, table_name=table_name
+            )
         else:
             duckdb.table(table_name).to_parquet(filename)
 
@@ -315,7 +321,7 @@ class JsonToDuck(PipelineInterface):
         password: str,
         select_query: str,
         table_name: str,
-    ) -> str:
+    ):
         """ """
         with open(filename, "rb") as f:
             salt = f.read(16)
@@ -328,26 +334,42 @@ class JsonToDuck(PipelineInterface):
         buffer = pa.BufferReader(decrypted_data)
         data = pq.read_table(buffer)
 
-        return self._create_table(
+        table = self._create_table(
             data=data,
             is_temp=is_temp,
             operation="extract",
             select_query=select_query,
             table_name=table_name,
         )
+        return table, salt
 
-    def _encrypt_file(self, password: str, filename: str) -> None:
+    def _encrypt_file(self, password: str, table_name: str, filename: str) -> None:
         """
         Encrypt the parquet file
 
         ## Args:
         - filename: is the file to be writen
         """
-        table = pq.read_table(filename)
+        salt = ""
+        try:
+            # Aqui eu preciso fazer o decrypt do file, antes de fazer a leitura
+            table, salt = self._decrypt_file(
+                filename=filename,
+                is_temp=False,
+                password=password,
+                table_name=table_name,
+                select_query="select * ",
+            )
+            table = duckdb.table(table).arrow()
+        except Exception as exc:
+            table_name += "_temp"
+            table = duckdb.table(table_name).arrow()
         buffer = pa.BufferOutputStream()
         pq.write_table(table, buffer)
         parquet_bytes = buffer.getvalue().to_pybytes()
-        key, salt = self.__generate_key_from_password(password)
+        key, new_salt = self.__generate_key_from_password(password)
+        if not salt:
+            salt = new_salt
         fernet = Fernet(key)
         encrypted_data = fernet.encrypt(parquet_bytes)
         with open(filename, "wb") as f:
@@ -490,32 +512,23 @@ class JsonToDuck(PipelineInterface):
 if __name__ == "__main__":
     jd = JsonToDuck()
     temp = jd.extract(
-        is_encrypted=False,
-        source_file="payments.json",
+        source_is_encrypted=False,
+        source_file="../payments.json",
         select_query="SELECT cast(payment_id as INTEGER) as payment_id, CAST(transaction_id as INTEGER) as transaction_id, amount_paid, date_paid",
-        table_name="payments_test",
+        source_table_name="payments_test",
     )
-    jd.load()
+    c_dir = os.getcwd()
+    if not c_dir.endswith("code_challenge_bliss"):
+        c_dir = os.path.dirname(c_dir)
+    if "tests" not in c_dir:
+        c_dir = os.path.join(c_dir, "tests/fixtures")
 
-    # jd.run(
-    #     [
-    #         {
-    #             "table_name": "payments",
-    #             "source_file": "../payments.json",
-    #             "select_query": "SELECT cast(payment_id as INTEGER) as payment_id, CAST(transaction_id as INTEGER) as transaction_id, amount_paid, date_paid",
-    #             "append": False,
-    #             "filename": "payments.parquet",
-    #             "is_encrypted": False,
-    #             "password": "123456",
-    #         },
-    #         {
-    #             "table_name": "transactions",
-    #             "source_file": "transactions.parquet",
-    #             "select_query": "SELECT cast(customer_id as VARCHAR) as customer_id, CAST(transaction_id as INTEGER) as transaction_id, amount, date",
-    #             "append": False,
-    #             "filename": "transactions.parquet",
-    #             "is_encrypted": False,
-    #             "password": "123456",
-    #         },
-    #     ]
-    # )
+    jd.load(
+        append=False,
+        dest_file=f"{c_dir}/payments.crypt.parquet",
+        dest_table_name="payments_test",
+        dest_is_encrypted=True,
+        dest_password="123456",
+        temp_table_name=temp,
+    )
+    print(jd._get_statistics())
