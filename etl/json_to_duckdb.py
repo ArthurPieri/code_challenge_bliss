@@ -20,6 +20,7 @@ import pyarrow.parquet as pq
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 from .utils.interfaces.pipeline import PipelineInterface
 
 
@@ -361,7 +362,7 @@ class JsonToDuck(PipelineInterface):
                 select_query="select * ",
             )
             table = duckdb.table(table).arrow()
-        except Exception as exc:
+        except Exception:
             table_name += "_temp"
             table = duckdb.table(table_name).arrow()
         buffer = pa.BufferOutputStream()
@@ -498,7 +499,7 @@ class JsonToDuck(PipelineInterface):
         for table in self.temp_tables:
             try:
                 duckdb.sql(f"DROP TABLE {table}")
-            except Exception as exc:
+            except Exception:
                 pass
         end_time = time.time()
         self.log.info(
