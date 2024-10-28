@@ -141,6 +141,25 @@ Use Apache Airflow para criar uma orquestração que:
 
 A plataforma deve ser robusta o suficiente para lidar com falhas, permitindo que partes do sistema continuem funcionando mesmo que outras falhem.
 
+### Resposta
+- Para executar o airflow localmente você deve:
+0. Acessar a pasta infra:
+```bash
+cd infra
+```
+1. Executar o airflow-init para criar o usuário e rodar as migrations dos bancos de dados
+```bash 
+docker compose up airflow-init
+```
+2. Limpar o seu ambiente
+```bash
+docker compose down --volumes --remove-orphans
+```
+3. Para iniciar o airflow:
+```bash
+docker compose up -d
+```
+
 ## Critérios de Avaliação
 
 - **Eficiência**: Avaliaremos a eficiência do pipeline ETL em termos de tempo de execução e uso de recursos.
