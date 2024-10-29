@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "airflow-provider-duckdb>=0.2.0",
+    "apache-airflow>=2.10.2",
     "cryptography>=43.0.3",
     "duckdb>=1.1.2",
     "pyarrow>=17.0.0",

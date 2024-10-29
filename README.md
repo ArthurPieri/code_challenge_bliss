@@ -7,8 +7,14 @@
 2. Executar os comandos:
     ```bash
     uv install
-    uv run python /path/to/file
+    cd dags/etl
+    uv run python json_to_duckdb.py 
     ``` 
+    > se quiser pode excluir os arquivos:
+        - LoggingEtl.log
+        - payments.crypt.parquet
+        - payments.parquet
+        - transactions.parquet
 3. Para executar os tests:
     ```bash
     uv run pytest
