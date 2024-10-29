@@ -23,7 +23,7 @@ default_args = {
 
 jd = JsonToDuck()
 c_dir = os.getcwd()
-if not c_dir.endswith("code_challenge_bliss"):
+while not c_dir.endswith("code_challenge_bliss"):
     c_dir = os.path.dirname(c_dir)
 
 with DAG(

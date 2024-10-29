@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from ..etl.json_to_duckdb import JsonToDuck
+from ..dags.etl.json_to_duckdb import JsonToDuck
 
 
 @pytest.fixture(scope="module")
@@ -13,8 +13,9 @@ def obj():
 
 
 c_dir = os.getcwd()
-if not c_dir.endswith("code_challenge_bliss"):
+while not c_dir.endswith("code_challenge_bliss"):
     c_dir = os.path.dirname(c_dir)
+
 if "tests" not in c_dir:
     c_dir = os.path.join(c_dir, "tests")
 
