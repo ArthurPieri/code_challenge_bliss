@@ -1,0 +1,15 @@
+[INFO]json_to_duckdb.py:285 2024-10-31 19:12:50,155 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:144 2024-10-31 19:12:50,162 - Parser Error: syntax error at or near "/"
+[INFO]json_to_duckdb.py:145 2024-10-31 19:12:50,162 - File: /Users/arthurpieri/code/code_challenge_bliss/dest_data/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:285 2024-10-31 19:12:50,311 - Table: payments_test created with 100 line(s)
+[INFO]json_to_duckdb.py:316 2024-10-31 19:12:50,318 - Table: payments_test saved on file: /Users/arthurpieri/code/code_challenge_bliss/dest_data/payments.crypt.parquet
+[INFO]json_to_duckdb.py:505 2024-10-31 19:12:50,328 - Class ran for: 0.193 second(s)
+[INFO]json_to_duckdb.py:509 2024-10-31 19:12:50,328 - ===== PIPELINE COMPLETED =====
+
+[INFO]json_to_duckdb.py:285 2024-10-31 19:14:25,510 - Table: payments_test_temp created with 100 line(s)
+[DEBUG]json_to_duckdb.py:144 2024-10-31 19:14:25,518 - Parser Error: syntax error at or near "/"
+[INFO]json_to_duckdb.py:145 2024-10-31 19:14:25,518 - File: /Users/arthurpieri/code/code_challenge_bliss/dest_data/payments.crypt.parquet not found, creating it
+[INFO]json_to_duckdb.py:316 2024-10-31 19:14:25,563 - Table: payments_test saved on file: /Users/arthurpieri/code/code_challenge_bliss/dest_data/payments.crypt.parquet
+[INFO]json_to_duckdb.py:505 2024-10-31 19:14:25,572 - Class ran for: 0.093 second(s)
+[INFO]json_to_duckdb.py:509 2024-10-31 19:14:25,573 - ===== PIPELINE COMPLETED =====
+

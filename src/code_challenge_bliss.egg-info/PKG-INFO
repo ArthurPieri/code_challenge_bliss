@@ -1,3 +1,19 @@
+Metadata-Version: 2.1
+Name: code-challenge-bliss
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: airflow-provider-duckdb>=0.2.0
+Requires-Dist: apache-airflow>=2.10.2
+Requires-Dist: cryptography>=43.0.3
+Requires-Dist: duckdb>=1.1.2
+Requires-Dist: pyarrow>=17.0.0
+Requires-Dist: pyspark>=3.5.3
+Requires-Dist: pytest>=8.3.3
+Requires-Dist: pytz>=2024.2
+Requires-Dist: unidecode>=1.3.8
+
 # Code Challenge: Data Engineer
 
 ## Como executar o projeto
@@ -7,7 +23,8 @@
 2. Executar os comandos:
     ```bash
     uv build
-    
+    cd dags/etl
+    uv run python json_to_duckdb.py 
     ``` 
     > se quiser pode excluir os arquivos:
         - LoggingEtl.log
@@ -18,35 +35,6 @@
     ```bash
     uv run pytest
     ```
-    > Note, o teste test_extract_encrypted pode falhar, porém basta executar o pytest novamente
-4. Acessar a pasta src:
-```bash
-cd src/
-```
-5. Para executar o desafio_etl
-```bash
-    uv run python desafio_etl.py 
-```
-6. Para executar o desafio de governança:
-```bash
-    uv run python governance.py 
-```
-7. Para executar o airflow localmente você deve acessar a pasta src/orchestration/infra:
-```bash
-cd orchestration/infra/
-```
-9. Executar o airflow-init para criar o usuário e rodar as migrations dos bancos de dados
-```bash 
-docker compose up airflow-init
-```
-10. Limpar o seu ambiente
-```bash
-docker compose down --volumes --remove-orphans
-```
-11. Para iniciar o airflow:
-```bash
-docker compose up -d
-```
 
 ## Contexto
 
@@ -175,6 +163,24 @@ Use Apache Airflow para criar uma orquestração que:
 
 A plataforma deve ser robusta o suficiente para lidar com falhas, permitindo que partes do sistema continuem funcionando mesmo que outras falhem.
 
+### Resposta
+- Para executar o airflow localmente você deve:
+0. Acessar a pasta infra:
+```bash
+cd infra
+```
+1. Executar o airflow-init para criar o usuário e rodar as migrations dos bancos de dados
+```bash 
+docker compose up airflow-init
+```
+2. Limpar o seu ambiente
+```bash
+docker compose down --volumes --remove-orphans
+```
+3. Para iniciar o airflow:
+```bash
+docker compose up -d
+```
 
 ## Critérios de Avaliação
 
