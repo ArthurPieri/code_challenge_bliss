@@ -35,17 +35,20 @@ cd src/
 ```bash
 cd orchestration/infra/
 ```
-9. Executar o airflow-init para criar o usuário e rodar as migrations dos bancos de dados
-```bash 
-docker compose up airflow-init
-```
-10. Limpar o seu ambiente
+8. Para iniciar o airflow você pode executar o script:
 ```bash
+chmod + x local_run.sh
+sh local_run.sh
+```
+ou executar os comandos definidos nele:
+```bash
+docker build --rm -t bliss/airflow:latest .
+
+docker compose up bliss-airflow-init
+
 docker compose down --volumes --remove-orphans
-```
-11. Para iniciar o airflow:
-```bash
-docker compose up -d
+
+docker compose -f ./docker-compose.yaml -p bliss-airflow up -d
 ```
 
 ## Contexto

@@ -22,12 +22,15 @@ default_args = {
 }
 
 jd = JsonToDuck()
-c_dir = os.getcwd()
-while not c_dir.endswith("code_challenge_bliss"):
-    c_dir = os.path.dirname(c_dir)
+source_dir = os.getcwd()
+print(source_dir)
+while not source_dir.endswith("airflow"):
+    source_dir = os.path.dirname(source_dir)
+dest_dir = os.path.join(source_dir, "dest_data")
+source_dir = os.path.join(source_dir, "source_data")
 
 with DAG(
-    "Json to Parquet",
+    "json_to_parquet",
     default_args=default_args,
     schedule_interval=None,
     tags=["Pipeline"],
@@ -37,7 +40,7 @@ with DAG(
     def run_extract(task_instance: ti):
         temp_table = jd.extract(
             source_is_encrypted=False,
-            source_file=f"{c_dir}/payments.json",
+            source_file=f"{source_dir}/payments.json",
             select_query="SELECT cast(payment_id as INTEGER) as payment_id, CAST(transaction_id as INTEGER) as transaction_id, amount_paid, date_paid",
             source_table_name="payments",
         )
@@ -50,7 +53,7 @@ with DAG(
         )
         jd.load(
             append=True,
-            dest_file=f"{c_dir}/payments.parquet",
+            dest_file=f"{dest_dir}/payments.parquet",
             dest_table_name="payments",
             dest_is_encrypted=False,
             temp_table_name=temp_table,
