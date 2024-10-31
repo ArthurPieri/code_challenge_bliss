@@ -1,1 +1,0 @@
-airflow-provider-duckdb==0.2.0
