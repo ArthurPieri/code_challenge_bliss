@@ -1,0 +1,5 @@
+src/orchestration/logs/**
+src/orchestration/plugins/**
+src/orchestration/infra/dags/**
+src/orchestration/infra/logs/**
+src/orchestration/infra/plugins/**

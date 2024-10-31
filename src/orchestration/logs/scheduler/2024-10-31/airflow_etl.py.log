@@ -142,3 +142,83 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'duckdb'
 [2024-10-31T22:49:53.823+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/airflow_etl.py
 [2024-10-31T22:49:53.844+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/airflow_etl.py took 0.076 seconds
+[2024-10-31T22:50:24.127+0000] {processor.py:186} INFO - Started process (PID=1339) to work on /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:50:24.130+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/airflow_etl.py for tasks to queue
+[2024-10-31T22:50:24.136+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:50:24.135+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:50:24.150+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:50:24.147+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/airflow_etl.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/airflow_etl.py", line 6, in <module>
+    from utils.json_to_duckdb import JsonToDuck
+  File "/opt/airflow/dags/utils/json_to_duckdb.py", line 17, in <module>
+    import duckdb
+ModuleNotFoundError: No module named 'duckdb'
+[2024-10-31T22:50:24.151+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:50:24.186+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/airflow_etl.py took 0.084 seconds
+[2024-10-31T22:50:54.974+0000] {processor.py:186} INFO - Started process (PID=1629) to work on /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:50:54.978+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/airflow_etl.py for tasks to queue
+[2024-10-31T22:50:54.986+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:50:54.986+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:50:54.997+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:50:54.995+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/airflow_etl.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/airflow_etl.py", line 6, in <module>
+    from utils.json_to_duckdb import JsonToDuck
+  File "/opt/airflow/dags/utils/json_to_duckdb.py", line 17, in <module>
+    import duckdb
+ModuleNotFoundError: No module named 'duckdb'
+[2024-10-31T22:50:54.998+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:50:55.025+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/airflow_etl.py took 0.063 seconds
+[2024-10-31T22:51:25.643+0000] {processor.py:186} INFO - Started process (PID=1926) to work on /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:51:25.645+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/airflow_etl.py for tasks to queue
+[2024-10-31T22:51:25.650+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:51:25.649+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:51:25.672+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:51:25.670+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/airflow_etl.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/airflow_etl.py", line 6, in <module>
+    from utils.json_to_duckdb import JsonToDuck
+  File "/opt/airflow/dags/utils/json_to_duckdb.py", line 17, in <module>
+    import duckdb
+ModuleNotFoundError: No module named 'duckdb'
+[2024-10-31T22:51:25.673+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:51:25.700+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/airflow_etl.py took 0.068 seconds
+[2024-10-31T22:51:56.712+0000] {processor.py:186} INFO - Started process (PID=2217) to work on /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:51:56.714+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/airflow_etl.py for tasks to queue
+[2024-10-31T22:51:56.723+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:51:56.721+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:51:56.740+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:51:56.738+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/airflow_etl.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/airflow_etl.py", line 6, in <module>
+    from utils.json_to_duckdb import JsonToDuck
+  File "/opt/airflow/dags/utils/json_to_duckdb.py", line 17, in <module>
+    import duckdb
+ModuleNotFoundError: No module named 'duckdb'
+[2024-10-31T22:51:56.740+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:51:56.791+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/airflow_etl.py took 0.111 seconds
+[2024-10-31T22:52:27.840+0000] {processor.py:186} INFO - Started process (PID=2508) to work on /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:52:27.843+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/airflow_etl.py for tasks to queue
+[2024-10-31T22:52:27.848+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:52:27.848+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:52:27.861+0000] {logging_mixin.py:190} INFO - [2024-10-31T22:52:27.858+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/airflow_etl.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/airflow_etl.py", line 6, in <module>
+    from utils.json_to_duckdb import JsonToDuck
+  File "/opt/airflow/dags/utils/json_to_duckdb.py", line 17, in <module>
+    import duckdb
+ModuleNotFoundError: No module named 'duckdb'
+[2024-10-31T22:52:27.861+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/airflow_etl.py
+[2024-10-31T22:52:27.903+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/airflow_etl.py took 0.076 seconds
