@@ -2,9 +2,10 @@ import os
 from datetime import timedelta
 
 from airflow import DAG
-from airflow.models.taskinstance import TaskInstance as ti
+# from airflow.models.taskinstance import TaskInstance as ti
 from utils.json_to_duckdb import JsonToDuck
 
+## 2
 default_args = {
     "owner": "airflow",
     "email": ["arthur@arthurpieri.com"],
@@ -23,7 +24,6 @@ default_args = {
 
 jd = JsonToDuck()
 source_dir = os.getcwd()
-print(source_dir)
 while not source_dir.endswith("airflow"):
     source_dir = os.path.dirname(source_dir)
 dest_dir = os.path.join(source_dir, "dest_data")
@@ -37,20 +37,15 @@ with DAG(
 ) as dag:
 
     @dag.task()
-    def run_extract(task_instance: ti):
+    def run():
         temp_table = jd.extract(
             source_is_encrypted=False,
             source_file=f"{source_dir}/payments.json",
             select_query="SELECT cast(payment_id as INTEGER) as payment_id, CAST(transaction_id as INTEGER) as transaction_id, amount_paid, date_paid",
             source_table_name="payments",
         )
-        task_instance.xcom_push(key="temp_table_name", value=temp_table)
+        print(temp_table)
 
-    @dag.task()
-    def run_load(task_instance: ti):
-        temp_table = task_instance.xcom_pull(
-            task_ids="run_extract", key="temp_table_name"
-        )
         jd.load(
             append=True,
             dest_file=f"{dest_dir}/payments.parquet",
@@ -59,9 +54,11 @@ with DAG(
             temp_table_name=temp_table,
         )
 
+        print(jd._get_statistics())
+
     @dag.task()
     def end():
         jd.__del__()
 
 
-run_extract() >> run_load() >> end()
+run() >> end()

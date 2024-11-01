@@ -149,7 +149,7 @@ class JsonToDuck:
             self.log.debug(exc)
             self.log.info("File: %s not found, creating it", kwargs.get("dest_file"))
             self._create_parquet_file(
-                table_name=kwargs.get("dest_table_name", None),
+                table_name=kwargs.get("temp_table_name", None),
                 filename=kwargs.get("dest_file", None),
                 is_encrypted=kwargs.get("dest_is_encrypted", None),
                 password=kwargs.get("dest_password", None),

@@ -8,16 +8,14 @@ RUN apt update && \
 
 USER airflow
 
+RUN pip install --upgrade pip
+
 COPY requirements.txt /requirements-force.txt
-COPY providers.txt /providers.txt
 
-RUN pip install -r /providers.txt && \
-    pip install -r /requirements-force.txt
+RUN pip install -r /requirements-force.txt
 
-RUN sleep 1
-
-RUN pip install duckdb && \
-    pip install airflow-provider-duckdb
+# uninstall azure - bug airflow
+RUN pip uninstall apache-airflow-providers-microsoft-azure --yes
 
 ENTRYPOINT ["bash", "/entrypoint"]
 
